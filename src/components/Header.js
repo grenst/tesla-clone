@@ -10,7 +10,7 @@ function Header() {
   const cars = useSelector(selectCars);
 
   return (
-    <Container>
+    <Container show={burgerStatus}>
       <FadingBack show={burgerStatus} />
       <a>
         <img className="logo" src="/images/logo.png" alt="" />
@@ -71,7 +71,7 @@ const FadingBack = styled.div`
   background-size: 1000%;
   transition: all 0.2s;
   background-position: ${(props) => (props.show ? "right" : "left")};
-  z-index: ${(props) => (props.show ? "210" : "-1")};
+  z-index: ${(props) => (props.show ? "21" : "-10")};
   backdrop-filter: ${(props) => (props.show ? "blur(5px)" : "blur(0)")};
 `;
 
@@ -85,7 +85,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  z-index: 10;
+  z-index: ${(props) => (props.show ? "10" : "1")};
   .logo {
     width: 150px;
     filter: brightness(0);
@@ -97,7 +97,7 @@ const Menu = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-  @media (max-width: 768px) {
+  @media (max-width: 805px) {
     display: none;
   }
   a {
