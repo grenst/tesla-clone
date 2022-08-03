@@ -63,6 +63,7 @@ const LeftButton = styled.div`
   font-size: 12px;
   cursor: pointer;
   margin: 8px;
+  z-index: 1;
 `;
 
 const RightButton = styled(LeftButton)`

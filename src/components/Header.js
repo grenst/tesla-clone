@@ -11,8 +11,9 @@ function Header() {
 
   return (
     <Container>
+      <FadingBack show={burgerStatus} />
       <a>
-        <img src="/images/logo.svg" alt="" />
+        <img className="logo" src="/images/logo.png" alt="" />
       </a>
       <Menu>
         {cars &&
@@ -34,10 +35,8 @@ function Header() {
 
         {cars &&
           cars.map((car, index) => (
-            <li>
-              <a key={index} href="#">
-                {car}
-              </a>
+            <li key={index}>
+              <a href="#">{car}</a>
             </li>
           ))}
         <li>
@@ -62,6 +61,20 @@ function Header() {
 
 export default Header;
 
+const FadingBack = styled.div`
+  position: absolute;
+  left: -100px;
+  top: -100px;
+  height: 200vh;
+  width: 300vw;
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  background-size: 1000%;
+  transition: all 0.2s;
+  background-position: ${(props) => (props.show ? "right" : "left")};
+  z-index: ${(props) => (props.show ? "210" : "-1")};
+  backdrop-filter: ${(props) => (props.show ? "blur(5px)" : "blur(0)")};
+`;
+
 const Container = styled.div`
   min-height: 60px;
   position: fixed;
@@ -73,6 +86,10 @@ const Container = styled.div`
   align-items: center;
   padding: 0 20px;
   z-index: 10;
+  .logo {
+    width: 150px;
+    filter: brightness(0);
+  }
 `;
 
 const Menu = styled.div`
@@ -109,18 +126,35 @@ const BurgerNav = styled.div`
   top: 0;
   bottom: 0;
   right: 0;
-  background: white;
   width: 300px;
-  z-index: 20;
+  z-index: 211;
   padding: 20px;
   display: flex;
   flex-direction: column;
   text-align: start;
+  box-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.6);
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background-size: 1000%;
+
+  filter: ${(props) => (props.show ? "opacity(100%)" : "opacity(0)")};
   transform: ${(props) => (props.show ? "translateX(0)" : "translateX(100%)")};
-  transition: transform 200ms;
+  transition: filter 0.4s cubic-bezier(0.76, 0, 0.24, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   li {
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    margin: 8px 15px;
+    line-height: 25px;
+    display: block;
+    cursor: pointer;
+    padding: 8px 25px;
+    background-color: transparent;
+    background-size: 2500%;
+    border-radius: 20px;
+    background-position: left;
+    border: none;
+    transition: all 0.3s ease-in;
+    &:hover {
+      background-color: rgba(66, 66, 66, 0.1);
+      border-radius: 20px;
+    }
     a {
       font-weight: 600;
     }
@@ -130,8 +164,17 @@ const BurgerNav = styled.div`
 const CloseWraper = styled.div`
   display: flex;
   justify-content: flex-end;
+  line-height: 60px;
 `;
 
 const CustomClose = styled(CloseIcon)`
   cursor: pointer;
+  transform: scale(1.3);
+  border-radius: 20px;
+  border: none;
+  background-color: transparent;
+  transition: all 0.3s ease-in;
+  &:hover {
+    background-color: rgba(66, 66, 66, 0.1);
+  }
 `;
