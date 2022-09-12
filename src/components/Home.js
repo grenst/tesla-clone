@@ -6,6 +6,7 @@ function Home() {
   return (
     <Container>
       <Section
+        id="model-s"
         title="Model S"
         description="Order Online for Touchless Delivery"
         backgroundImg="model-s.jpg"

@@ -12,8 +12,12 @@ function Header() {
   return (
     <Container show={burgerStatus}>
       <FadingBack show={burgerStatus} />
-      <a>
+      <a href="https://github.com/grenst/tesla-clone">
         <img className="logo" src="/images/logo.png" alt="" />
+        <br></br>
+        <span className="coded">
+          coded by <span>Makarova Olena</span>
+        </span>
       </a>
       <Menu>
         {cars &&
